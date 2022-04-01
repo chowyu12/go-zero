@@ -3,27 +3,35 @@ package gogen
 import (
 	"fmt"
 
-	"github.com/tal-tech/go-zero/tools/goctl/util/pathx"
 	"github.com/urfave/cli"
+	"github.com/zeromicro/go-zero/tools/goctl/util/pathx"
 )
 
 const (
-	category            = "api"
-	configTemplateFile  = "config.tpl"
-	contextTemplateFile = "context.tpl"
-	etcTemplateFile     = "etc.tpl"
-	handlerTemplateFile = "handler.tpl"
-	logicTemplateFile   = "logic.tpl"
-	mainTemplateFile    = "main.tpl"
+	category                    = "api"
+	configTemplateFile          = "config.tpl"
+	contextTemplateFile         = "context.tpl"
+	etcTemplateFile             = "etc.tpl"
+	handlerTemplateFile         = "handler.tpl"
+	logicTemplateFile           = "logic.tpl"
+	mainTemplateFile            = "main.tpl"
+	middlewareImplementCodeFile = "middleware.tpl"
+	routesTemplateFile          = "routes.tpl"
+	routesAdditionTemplateFile  = "route-addition.tpl"
+	typesTemplateFile           = "types.tpl"
 )
 
 var templates = map[string]string{
-	configTemplateFile:  configTemplate,
-	contextTemplateFile: contextTemplate,
-	etcTemplateFile:     etcTemplate,
-	handlerTemplateFile: handlerTemplate,
-	logicTemplateFile:   logicTemplate,
-	mainTemplateFile:    mainTemplate,
+	configTemplateFile:          configTemplate,
+	contextTemplateFile:         contextTemplate,
+	etcTemplateFile:             etcTemplate,
+	handlerTemplateFile:         handlerTemplate,
+	logicTemplateFile:           logicTemplate,
+	mainTemplateFile:            mainTemplate,
+	middlewareImplementCodeFile: middlewareImplementCode,
+	routesTemplateFile:          routesTemplate,
+	routesAdditionTemplateFile:  routesAdditionTemplate,
+	typesTemplateFile:           typesTemplate,
 }
 
 // Category returns the category of the api files.

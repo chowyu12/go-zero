@@ -3,11 +3,11 @@ package gen
 import (
 	"strings"
 
-	"github.com/tal-tech/go-zero/core/collection"
-	"github.com/tal-tech/go-zero/tools/goctl/model/sql/template"
-	"github.com/tal-tech/go-zero/tools/goctl/util"
-	"github.com/tal-tech/go-zero/tools/goctl/util/pathx"
-	"github.com/tal-tech/go-zero/tools/goctl/util/stringx"
+	"github.com/zeromicro/go-zero/core/collection"
+	"github.com/zeromicro/go-zero/tools/goctl/model/sql/template"
+	"github.com/zeromicro/go-zero/tools/goctl/util"
+	"github.com/zeromicro/go-zero/tools/goctl/util/pathx"
+	"github.com/zeromicro/go-zero/tools/goctl/util/stringx"
 )
 
 func genUpdate(table Table, withCache, postgreSql bool) (string, string, error) {
@@ -58,6 +58,7 @@ func genUpdate(table Table, withCache, postgreSql bool) (string, string, error) 
 			"originalPrimaryKey":    wrapWithRawString(table.PrimaryKey.Name.Source(), postgreSql),
 			"expressionValues":      strings.Join(expressionValues, ", "),
 			"postgreSql":            postgreSql,
+			"data":                  table,
 		})
 	if err != nil {
 		return "", "", nil
@@ -73,6 +74,7 @@ func genUpdate(table Table, withCache, postgreSql bool) (string, string, error) 
 		Parse(text).
 		Execute(map[string]interface{}{
 			"upperStartCamelObject": camelTableName,
+			"data":                  table,
 		})
 	if err != nil {
 		return "", "", nil

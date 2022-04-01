@@ -3,9 +3,9 @@ package gen
 import (
 	"fmt"
 
-	"github.com/tal-tech/go-zero/tools/goctl/model/sql/template"
-	"github.com/tal-tech/go-zero/tools/goctl/util/pathx"
 	"github.com/urfave/cli"
+	"github.com/zeromicro/go-zero/tools/goctl/model/sql/template"
+	"github.com/zeromicro/go-zero/tools/goctl/util/pathx"
 )
 
 const (
@@ -22,7 +22,8 @@ const (
 	importsWithNoCacheTemplateFile        = "import-no-cache.tpl"
 	insertTemplateFile                    = "insert.tpl"
 	insertTemplateMethodFile              = "interface-insert.tpl"
-	modelTemplateFile                     = "model.tpl"
+	modelGenTemplateFile                  = "model-gen.tpl"
+	modelCustomTemplateFile               = "model.tpl"
 	modelNewTemplateFile                  = "model-new.tpl"
 	tagTemplateFile                       = "tag.tpl"
 	typesTemplateFile                     = "types.tpl"
@@ -45,7 +46,8 @@ var templates = map[string]string{
 	importsWithNoCacheTemplateFile:        template.ImportsNoCache,
 	insertTemplateFile:                    template.Insert,
 	insertTemplateMethodFile:              template.InsertMethod,
-	modelTemplateFile:                     template.Model,
+	modelGenTemplateFile:                  template.ModelGen,
+	modelCustomTemplateFile:               template.ModelCustom,
 	modelNewTemplateFile:                  template.New,
 	tagTemplateFile:                       template.Tag,
 	typesTemplateFile:                     template.Types,

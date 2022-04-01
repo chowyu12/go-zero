@@ -5,12 +5,12 @@ import (
 	"path/filepath"
 	"strings"
 
-	conf "github.com/tal-tech/go-zero/tools/goctl/config"
-	"github.com/tal-tech/go-zero/tools/goctl/rpc/parser"
-	"github.com/tal-tech/go-zero/tools/goctl/util"
-	"github.com/tal-tech/go-zero/tools/goctl/util/format"
-	"github.com/tal-tech/go-zero/tools/goctl/util/pathx"
-	"github.com/tal-tech/go-zero/tools/goctl/util/stringx"
+	conf "github.com/zeromicro/go-zero/tools/goctl/config"
+	"github.com/zeromicro/go-zero/tools/goctl/rpc/parser"
+	"github.com/zeromicro/go-zero/tools/goctl/util"
+	"github.com/zeromicro/go-zero/tools/goctl/util/format"
+	"github.com/zeromicro/go-zero/tools/goctl/util/pathx"
+	"github.com/zeromicro/go-zero/tools/goctl/util/stringx"
 )
 
 const etcTemplate = `Name: {{.serviceName}}.rpc
@@ -23,7 +23,7 @@ Etcd:
 
 // GenEtc generates the yaml configuration file of the rpc service,
 // including host, port monitoring configuration items and etcd configuration
-func (g *DefaultGenerator) GenEtc(ctx DirContext, _ parser.Proto, cfg *conf.Config) error {
+func (g *Generator) GenEtc(ctx DirContext, _ parser.Proto, cfg *conf.Config) error {
 	dir := ctx.GetEtc()
 	etcFilename, err := format.FileNamingFormat(cfg.NamingFormat, ctx.GetServiceName().Source())
 	if err != nil {

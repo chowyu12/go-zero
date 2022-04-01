@@ -9,11 +9,11 @@ import (
 	"strings"
 	"text/template"
 
-	"github.com/tal-tech/go-zero/core/collection"
-	"github.com/tal-tech/go-zero/tools/goctl/api/spec"
-	"github.com/tal-tech/go-zero/tools/goctl/api/util"
-	"github.com/tal-tech/go-zero/tools/goctl/util/ctx"
-	"github.com/tal-tech/go-zero/tools/goctl/util/pathx"
+	"github.com/zeromicro/go-zero/core/collection"
+	"github.com/zeromicro/go-zero/tools/goctl/api/spec"
+	"github.com/zeromicro/go-zero/tools/goctl/api/util"
+	"github.com/zeromicro/go-zero/tools/goctl/util/ctx"
+	"github.com/zeromicro/go-zero/tools/goctl/util/pathx"
 )
 
 type fileGenConfig struct {
@@ -109,6 +109,17 @@ func getAuths(api *spec.ApiSpec) []string {
 		}
 	}
 	return authNames.KeysStr()
+}
+
+func getJwtTrans(api *spec.ApiSpec) []string {
+	jwtTransList := collection.NewSet()
+	for _, g := range api.Service.Groups {
+		jt := g.GetAnnotation(jwtTransKey)
+		if len(jt) > 0 {
+			jwtTransList.Add(jt)
+		}
+	}
+	return jwtTransList.KeysStr()
 }
 
 func getMiddleware(api *spec.ApiSpec) []string {

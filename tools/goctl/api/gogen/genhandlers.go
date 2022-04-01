@@ -5,13 +5,13 @@ import (
 	"path"
 	"strings"
 
-	"github.com/tal-tech/go-zero/tools/goctl/api/spec"
-	"github.com/tal-tech/go-zero/tools/goctl/config"
-	"github.com/tal-tech/go-zero/tools/goctl/internal/version"
-	"github.com/tal-tech/go-zero/tools/goctl/util"
-	"github.com/tal-tech/go-zero/tools/goctl/util/format"
-	"github.com/tal-tech/go-zero/tools/goctl/util/pathx"
-	"github.com/tal-tech/go-zero/tools/goctl/vars"
+	"github.com/zeromicro/go-zero/tools/goctl/api/spec"
+	"github.com/zeromicro/go-zero/tools/goctl/config"
+	"github.com/zeromicro/go-zero/tools/goctl/internal/version"
+	"github.com/zeromicro/go-zero/tools/goctl/util"
+	"github.com/zeromicro/go-zero/tools/goctl/util/format"
+	"github.com/zeromicro/go-zero/tools/goctl/util/pathx"
+	"github.com/zeromicro/go-zero/tools/goctl/vars"
 )
 
 const (
@@ -34,7 +34,7 @@ func {{.HandlerName}}(svcCtx *svc.ServiceContext) http.HandlerFunc {
 		}
 
 		{{end}}l := {{.LogicName}}.New{{.LogicType}}(r.Context(), svcCtx)
-		{{if .HasResp}}resp, {{end}}err := l.{{.Call}}({{if .HasRequest}}req{{end}})
+		{{if .HasResp}}resp, {{end}}err := l.{{.Call}}({{if .HasRequest}}&req{{end}})
 		if err != nil {
 			httpx.Error(w, err)
 		} else {

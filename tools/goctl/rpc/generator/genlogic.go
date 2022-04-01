@@ -5,13 +5,13 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/tal-tech/go-zero/core/collection"
-	conf "github.com/tal-tech/go-zero/tools/goctl/config"
-	"github.com/tal-tech/go-zero/tools/goctl/rpc/parser"
-	"github.com/tal-tech/go-zero/tools/goctl/util"
-	"github.com/tal-tech/go-zero/tools/goctl/util/format"
-	"github.com/tal-tech/go-zero/tools/goctl/util/pathx"
-	"github.com/tal-tech/go-zero/tools/goctl/util/stringx"
+	"github.com/zeromicro/go-zero/core/collection"
+	conf "github.com/zeromicro/go-zero/tools/goctl/config"
+	"github.com/zeromicro/go-zero/tools/goctl/rpc/parser"
+	"github.com/zeromicro/go-zero/tools/goctl/util"
+	"github.com/zeromicro/go-zero/tools/goctl/util/format"
+	"github.com/zeromicro/go-zero/tools/goctl/util/pathx"
+	"github.com/zeromicro/go-zero/tools/goctl/util/stringx"
 )
 
 const (
@@ -50,7 +50,7 @@ func (l *{{.logicName}}) {{.method}} ({{if .hasReq}}in {{.request}}{{if .stream}
 )
 
 // GenLogic generates the logic file of the rpc service, which corresponds to the RPC definition items in proto.
-func (g *DefaultGenerator) GenLogic(ctx DirContext, proto parser.Proto, cfg *conf.Config) error {
+func (g *Generator) GenLogic(ctx DirContext, proto parser.Proto, cfg *conf.Config) error {
 	dir := ctx.GetLogic()
 	service := proto.Service.Service.Name
 	for _, rpc := range proto.Service.RPC {
@@ -84,7 +84,7 @@ func (g *DefaultGenerator) GenLogic(ctx DirContext, proto parser.Proto, cfg *con
 	return nil
 }
 
-func (g *DefaultGenerator) genLogicFunction(serviceName, goPackage string, rpc *parser.RPC) (string, error) {
+func (g *Generator) genLogicFunction(serviceName, goPackage string, rpc *parser.RPC) (string, error) {
 	functions := make([]string, 0)
 	text, err := pathx.LoadTemplate(category, logicFuncTemplateFileFile, logicFunctionTemplate)
 	if err != nil {
